@@ -24,11 +24,13 @@ CREATE TABLE tiles (
     DEFAULT uuid_generate_v4()
     PRIMARY KEY,
 
-  region TEXT
-    NOT NULL,
+  region TEXT,
+    CHECK (region IS NULL OR CHAR_LENGTH(region) > 0),
   terrain TEXT
-    NOT NULL,
-  building TEXT,
+    CHECK (terrain IS NULL OR CHAR_LENGTH(terrain) > 0),
+  building TEXT
+    CHECK (building IS NULL OR (CHAR_LENGTH(building) > 0 AND building_hp IS NOT NULL AND building_hp > 0)),
+  building_hp INTEGER,
 
   x INTEGER
     NOT NULL,
@@ -42,8 +44,30 @@ CREATE TABLE tiles (
     DEFAULT 0
     CHECK (searches >= 0),
   signage TEXT
+    CHECK (signage IS NULL OR CHAR_LENGTH(signage) > 0)
 
 );
+
+CREATE UNIQUE INDEX tiles_coords_idx_unique ON tiles (x, y, z);
+
+-- ## tiles_items
+
+CREATE TABLE tiles_items (
+  tile_id UUID
+    NOT NULL
+    REFERENCES tiles (id)
+      ON UPDATE CASCADE
+      ON DELETE CASCADE,
+
+  item TEXT
+    NOT NULL,
+  quantity INTEGER
+    NOT NULL
+    CHECK (quantity > 0)
+);
+
+CREATE INDEX tiles_items_idx ON tiles_items (tile_id);
+CREATE UNIQUE INDEX tiles_items_idx_unique ON tiles_items (tile_id, item);
 
 -- ## creatures
 
@@ -94,9 +118,14 @@ CREATE TABLE users (
     PRIMARY KEY,
 
   email TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(email) > 0),
   password TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(password) > 0),
+  banned BOOLEAN
+    NOT NULL
+    DEFAULT FALSE,
 
   created_at TIMESTAMPTZ
     NOT NULL

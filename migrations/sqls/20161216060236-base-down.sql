@@ -13,6 +13,7 @@ DROP TABLE users_characters;
 DROP TABLE characters;
 DROP TABLE users;
 DROP TABLE creatures;
+DROP TABLE tiles_items;
 DROP TABLE tiles;
 
 DROP FUNCTION bump_updated_column ();
