@@ -1,0 +1,16 @@
+{
+  "name": "shintolin4",
+  "version": "0.0.0",
+  "private": true,
+  "main": "server.js",
+  "license": "ISC",
+  "dependencies": {
+    "db-migrate": "git+ssh://git@github.com/db-migrate/node-db-migrate",
+    "db-migrate-pg": "^0.1.11"
+  },
+  "scripts": {
+    "create-migration": "db-migrate create --",
+    "migrate-down": "db-migrate down",
+    "migrate-up": "db-migrate up"
+  }
+}
