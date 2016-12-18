@@ -458,7 +458,7 @@ CREATE TRIGGER profiles_updated
 
 ALTER TABLE tiles
   ADD COLUMN settlement_id UUID
-    REFERENCES characters (id)
+    REFERENCES settlements (id)
       ON UPDATE CASCADE
       ON DELETE SET NULL;
 
