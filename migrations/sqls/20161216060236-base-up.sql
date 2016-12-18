@@ -30,7 +30,8 @@ CREATE TABLE tiles (
     CHECK (terrain IS NULL OR CHAR_LENGTH(terrain) > 0),
   building TEXT
     CHECK (building IS NULL OR (CHAR_LENGTH(building) > 0 AND building_hp IS NOT NULL AND building_hp > 0)),
-  building_hp INTEGER,
+  building_hp INTEGER
+    CHECK (building_hp IS NULL OR building_hp >= 0),
 
   x INTEGER
     NOT NULL,
@@ -60,7 +61,8 @@ CREATE TABLE tiles_items (
       ON DELETE CASCADE,
 
   item TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(item) > 0),
   quantity INTEGER
     NOT NULL
     CHECK (quantity > 0)
@@ -84,11 +86,14 @@ CREATE TABLE creatures (
       ON DELETE CASCADE,
 
   kind TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(kind) > 0),
   hp INTEGER
-    NOT NULL,
+    NOT NULL
+    CHECK (hp >= 0 AND hp <= hp_max),
   hp_max INTEGER
-    NOT NULL,
+    NOT NULL
+    CHECK (hp_max > 0),
 
   created_at TIMESTAMPTZ
     NOT NULL
@@ -126,6 +131,9 @@ CREATE TABLE users (
   banned BOOLEAN
     NOT NULL
     DEFAULT FALSE,
+  tags TEXT[]
+    NOT NULL
+    DEFAULT '{}',
 
   created_at TIMESTAMPTZ
     NOT NULL
@@ -156,6 +164,10 @@ CREATE TABLE characters (
 
   name TEXT
     NOT NULL
+    CHECK (CHAR_LENGTH(name) > 0),
+  tags TEXT[]
+    NOT NULL
+    DEFAULT '{}'
 
 );
 
@@ -190,6 +202,7 @@ CREATE TABLE characters_skills (
 
   skill TEXT
     NOT NULL
+    CHECK (CHAR_LENGTH(skill) > 0)
 );
 
 CREATE INDEX characters_skills_idx ON characters_skills (character_id);
@@ -205,7 +218,8 @@ CREATE TABLE characters_items (
       ON DELETE CASCADE,
 
   item TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(item) > 0),
   quantity INTEGER
     NOT NULL
     CHECK (quantity > 0)
@@ -248,8 +262,8 @@ CREATE TABLE stats (
     CHECK (hp >= 0 AND hp <= hp_max),
   hp_max INTEGER
     NOT NULL
-    CHECK (hp_max >= hp),
-  ap INTEGER
+    CHECK (hp_max > 0),
+  ap NUMERIC
     NOT NULL
     CHECK (ap >= 0),
   survival INTEGER
@@ -276,6 +290,9 @@ CREATE TABLE stats (
     DEFAULT 0
     CHECK (xp_wanderer >= 0),
 
+  activity_at TIMESTAMPTZ
+    NOT NULL
+    DEFAULT NOW()::TIMESTAMPTZ,
   updated_at TIMESTAMPTZ
     NOT NULL
     DEFAULT NOW()::TIMESTAMPTZ
@@ -298,15 +315,22 @@ CREATE TABLE settlements (
     PRIMARY KEY,
 
   name TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(name) > 0),
   motto TEXT
-    NOT NULL,
+    CHECK (motto IS NULL OR CHAR_LENGTH(motto) > 0),
   description TEXT
-    NOT NULL,
+    CHECK (description IS NULL OR CHAR_LENGTH(description) > 0),
   website_url TEXT
-    NOT NULL,
+    CHECK (website_url IS NULL OR CHAR_LENGTH(website_url) > 0),
   image_url TEXT
-    NOT NULL,
+    CHECK (image_url IS NULL OR CHAR_LENGTH(image_url) > 0),
+  leader_title TEXT,
+    CHECK (leader_title IS NULL OR CHAR_LENGTH(leader_title) > 0),
+  member_title TEXT
+    CHECK (member_title IS NULL OR CHAR_LENGTH(member_title) > 0),
+  provisional_title TEXT
+    CHECK (provisional_title IS NULL OR CHAR_LENGTH(provisional_title) > 0),
 
   favor INTEGER
     NOT NULL
@@ -330,11 +354,16 @@ CREATE TABLE settlements (
   leader_id UUID
     REFERENCES characters (id)
       ON UPDATE CASCADE
-      ON DELETE SET NULL,
+      ON DELETE CASCADE,
   destroyer_id UUID
+    CHECK (
+      (destroyer_id IS NULL AND destroyed_at IS NULL)
+      OR
+      (destroyer_id IS NOT NULL AND destroyed_at IS NOT NULL)
+    )
     REFERENCES characters (id)
       ON UPDATE CASCADE
-      ON DELETE SET NULL,
+      ON DELETE CASCADE,
 
   created_at TIMESTAMPTZ
     NOT NULL
@@ -366,9 +395,9 @@ CREATE TABLE profiles (
       ON DELETE CASCADE,
 
   bio TEXT
-    NOT NULL,
+    CHECK (bio IS NULL OR CHAR_LENGTH(bio) > 0),
   image_url TEXT
-    NOT NULL,
+    CHECK (image_url IS NULL OR CHAR_LENGTH(image_url) > 0),
 
   kills INTEGER
     NOT NULL
@@ -388,6 +417,11 @@ CREATE TABLE profiles (
     CHECK (revives >= 0),
 
   settlement_id UUID
+    CHECK (
+      (settlement_id IS NULL AND settlement_joined_at IS NULL)
+      OR
+      (settlement_id IS NOT NULL AND settlement_joined_at IS NOT NULL)
+    )
     REFERENCES settlements (id)
       ON UPDATE CASCADE
       ON DELETE CASCADE,
@@ -425,7 +459,8 @@ CREATE TABLE hits (
     PRIMARY KEY,
 
   ip TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(ip) > 0),
   hitdate DATE
     NOT NULL,
   character_id UUID
@@ -468,7 +503,8 @@ CREATE TABLE infos (
       ON UPDATE CASCADE
       ON DELETE CASCADE,
   kind TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(kind) > 0),
   data JSONB
     NOT NULL
     DEFAULT '{}'
@@ -499,9 +535,11 @@ CREATE TABLE messages (
       ON UPDATE CASCADE
       ON DELETE CASCADE,
   style TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(style) > 0),
   message TEXT
     NOT NULL
+    CHECK (CHAR_LENGTH(message) > 0)
 
 );
 
@@ -525,9 +563,11 @@ CREATE TABLE broadcasts (
       ON UPDATE CASCADE
       ON DELETE CASCADE,
   style TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(style) > 0),
   message TEXT
     NOT NULL
+    CHECK (CHAR_LENGTH(message) > 0)
 
 );
 
@@ -545,9 +585,11 @@ CREATE TABLE alerts (
   sent_at TIMESTAMPTZ
     NOT NULL,
   style TEXT
-    NOT NULL,
+    NOT NULL
+    CHECK (CHAR_LENGTH(style) > 0),
   message TEXT
     NOT NULL
+    CHECK (CHAR_LENGTH(message) > 0)
 
 );
 
