@@ -242,7 +242,7 @@ CREATE TABLE locations (
     NOT NULL
     REFERENCES tiles (id)
       ON UPDATE CASCADE
-      ON DELETE CASCADE
+      ON DELETE RESTRICT
 );
 
 CREATE INDEX locations_tile_idx ON locations (tile_id);
@@ -345,16 +345,16 @@ CREATE TABLE settlements (
     NOT NULL
     REFERENCES tiles (id)
       ON UPDATE CASCADE
-      ON DELETE CASCADE,
+      ON DELETE RESTRICT,
   founder_id UUID
     NOT NULL
     REFERENCES characters (id)
       ON UPDATE CASCADE
-      ON DELETE CASCADE,
+      ON DELETE RESTRICT,
   leader_id UUID
     REFERENCES characters (id)
       ON UPDATE CASCADE
-      ON DELETE CASCADE,
+      ON DELETE RESTRICT,
   destroyer_id UUID
     CHECK (
       (destroyer_id IS NULL AND destroyed_at IS NULL)
@@ -363,7 +363,7 @@ CREATE TABLE settlements (
     )
     REFERENCES characters (id)
       ON UPDATE CASCADE
-      ON DELETE CASCADE,
+      ON DELETE RESTRICT,
 
   created_at TIMESTAMPTZ
     NOT NULL
@@ -424,7 +424,12 @@ CREATE TABLE profiles (
     )
     REFERENCES settlements (id)
       ON UPDATE CASCADE
-      ON DELETE CASCADE,
+      ON DELETE RESTRICT,
+  settlement_vote_id UUID
+    CHECK (settlement_vote_id IS NULL OR settlement_id IS NOT NULL)
+    REFERENCES characters (id)
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT,
 
   last_died_at TIMESTAMPTZ
     CHECK (last_died_at >= created_at),
@@ -448,6 +453,14 @@ CREATE TRIGGER profiles_updated
   ON profiles
   FOR EACH ROW
   EXECUTE PROCEDURE bump_updated_column();
+
+-- ## tiles (settlement)
+
+ALTER TABLE tiles
+  ADD COLUMN settlement_id UUID
+    REFERENCES characters (id)
+      ON UPDATE CASCADE
+      ON DELETE SET NULL;
 
 -- ## hits
 
