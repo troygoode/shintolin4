@@ -520,7 +520,9 @@ CREATE TABLE infos (
     CHECK (CHAR_LENGTH(kind) > 0),
   data JSONB
     NOT NULL
-    DEFAULT '{}'
+    DEFAULT '{}',
+  cross_reference UUID
+    NOT NULL
 
 );
 
@@ -552,8 +554,9 @@ CREATE TABLE messages (
     CHECK (CHAR_LENGTH(style) > 0),
   message TEXT
     NOT NULL
-    CHECK (CHAR_LENGTH(message) > 0)
-
+    CHECK (CHAR_LENGTH(message) > 0),
+  cross_reference UUID
+    NOT NULL
 );
 
 CREATE INDEX messages_received_at_idx ON messages (character_id, sent_at DESC);
@@ -585,6 +588,39 @@ CREATE TABLE broadcasts (
 );
 
 CREATE INDEX broadcasts_sent_at_idx ON broadcasts (sent_at DESC);
+
+-- ## settlement_broadcasts
+
+CREATE TABLE settlement_broadcasts (
+
+  id UUID
+    NOT NULL
+    DEFAULT uuid_generate_v4()
+    PRIMARY KEY,
+
+  sent_at TIMESTAMPTZ
+    NOT NULL,
+  sender_id UUID
+    NOT NULL
+    REFERENCES characters (id)
+      ON UPDATE CASCADE
+      ON DELETE CASCADE,
+  style TEXT
+    NOT NULL
+    CHECK (CHAR_LENGTH(style) > 0),
+  message TEXT
+    NOT NULL
+    CHECK (CHAR_LENGTH(message) > 0),
+
+  settlement_id UUID
+    NOT NULL
+    REFERENCES settlements (id)
+      ON UPDATE CASCADE
+      ON DELETE CASCADE
+
+);
+
+CREATE INDEX settlement_broadcasts_sent_at_idx ON settlement_broadcasts (settlement_id, sent_at DESC);
 
 -- ## alerts
 
