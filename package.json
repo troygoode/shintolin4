@@ -32,7 +32,7 @@
     "storybook": "(cd client && exec yarn run storybook)",
     "lint": "eslint .",
     "postinstall": "(cd client && yarn install)",
-    "production": "(cd client && yarn run build) && babel-node server.js"
+    "production": "(cd client && yarn run build-all) && babel-node server.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

@@ -15,8 +15,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "start-storybook -p 3002 -s public",
+    "build-storybook": "build-storybook -s public -o build/storybook",
+    "build-all": "yarn run build && yarn run build-storybook"
   },
   "proxy": "http://localhost:3001/"
 }
