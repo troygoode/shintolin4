@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express')
 
+const DEFAULT_PORT = 3001
+
 const server = express()
 
 if (process.env.NODE_ENV === 'production') {
@@ -9,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 if (!module.parent) {
-  const PORT = process.env.PORT || 3000
+  const PORT = process.env.PORT || DEFAULT_PORT
   server.listen(PORT, () => {
     console.log(`Shintolin is running on port ${PORT}.`)
   })

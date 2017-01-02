@@ -25,12 +25,14 @@
     "migrate-down": "db-migrate down",
     "migrate-up": "db-migrate up",
     "reset": "dropdb shintolin; createdb shintolin; yarn run migrate-up",
-    "start": "concurrently \"yarn run server\" \"yarn run client\"",
-    "server": "flow && babel-node server.js",
+    "start": "flow && concurrently \"yarn run server\" \"yarn run client\"",
+    "server": "babel-node server.js",
     "client": "(cd client && exec yarn start)",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "storybook": "(cd client && exec yarn run storybook)",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "(cd client && yarn install)",
+    "production": "(cd client && yarn run build) && babel-node server.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
