@@ -1,8 +1,7 @@
-const path = require('path')
-const express = require('express')
+import path from 'path'
+import express from 'express'
 
 const DEFAULT_PORT = 3001
-
 const server = express()
 
 if (process.env.NODE_ENV === 'production') {
@@ -17,4 +16,4 @@ if (!module.parent) {
   })
 }
 
-module.exports = server
+export default server
