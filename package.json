@@ -1,17 +1,44 @@
 {
-  "name": "shintolin4",
+  "name": "shintolin",
   "version": "0.0.0",
   "private": true,
   "main": "server.js",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-flow-strip-types": "^6.21.0",
+    "babel-preset-node6": "^11.0.0",
+    "babel-preset-stage-2": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "concurrently": "^3.1.0",
     "db-migrate": "git+ssh://git@github.com/db-migrate/node-db-migrate",
-    "db-migrate-pg": "^0.1.11"
+    "db-migrate-boilerplate": "^1.0.0",
+    "db-migrate-pg": "^0.1.11",
+    "express": "^4.14.0",
+    "flow-bin": "^0.37.4"
   },
   "scripts": {
+    "test": "yarn run lint && yarn run flow && yarn run test-server && (cd client && CI=true exec yarn test)",
+    "test-server": "echo TEST",
+    "create-database": "createdb shintolin",
     "create-migration": "db-migrate create --",
     "migrate-down": "db-migrate down",
     "migrate-up": "db-migrate up",
-    "reset": "dropdb shintolin4; createdb shintolin4; npm run migrate-up"
+    "reset": "dropdb shintolin; createdb shintolin; yarn run migrate-up",
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "server": "flow && babel-node server.js",
+    "client": "(cd client && exec yarn start)",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "storybook": "(cd client && exec yarn run storybook)",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-flowtype": "^2.29.2",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-standard": "^2.0.1"
   }
 }
