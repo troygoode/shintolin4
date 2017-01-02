@@ -765,9 +765,9 @@ db-migrate-shared@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/db-migrate-shared/-/db-migrate-shared-1.1.2.tgz#4cacfd200dcb792874ec410a43f8c30fb2ede1bd"
 
-"db-migrate@git+ssh://git@github.com/db-migrate/node-db-migrate":
+db-migrate@troygoode/node-db-migrate#patch-1:
   version "0.10.0-beta.12"
-  resolved "git+ssh://git@github.com/db-migrate/node-db-migrate#ecae49bab668e4dcf580dbe39660b7b5c58949c1"
+  resolved "https://codeload.github.com/troygoode/node-db-migrate/tar.gz/bd708fb21bb2ecb5387f0e66b75d62a9fc02bdc7"
   dependencies:
     balanced-match "^0.4.2"
     bluebird "^3.1.1"
@@ -1732,13 +1732,9 @@ ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
 
-mute-stream@0.0.5:
+mute-stream@0.0.5, mute-stream@~0.0.4:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
-
-mute-stream@~0.0.4:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.6.tgz#48962b19e169fd1dfc240b3f1e7317627bbc47db"
 
 nan@^2.3.0:
   version "2.5.0"
