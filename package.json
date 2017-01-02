@@ -26,16 +26,17 @@
     "migrate-up": "db-migrate up",
     "reset": "dropdb shintolin; createdb shintolin; yarn run migrate-up",
     "start": "flow && concurrently \"yarn run server\" \"yarn run client\"",
-    "server": "babel-node server.js",
+    "server": "babel-watch server.js",
     "client": "(cd client && exec yarn start)",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "storybook": "(cd client && exec yarn run storybook)",
     "lint": "eslint .",
-    "postinstall": "(cd client && yarn install)",
-    "production": "(cd client && yarn run build-all) && babel-node server.js"
+    "heroku-postbuild": "(cd client && yarn install && yarn run build-all && yarn run migrate-up)",
+    "heroku-start": "babel-node server.js"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "babel-watch": "^2.0.5",
     "eslint": "^3.12.2",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-flowtype": "^2.29.2",
