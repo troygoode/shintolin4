@@ -20,7 +20,7 @@
   "scripts": {
     "test": "yarn run lint && yarn run flow && yarn run test-server && (cd client && CI=true exec yarn test)",
     "test-server": "echo TEST",
-    "create-database": "createdb shintolin",
+    "create-database": "createdb shintolin && createuser shintolin && psql -d shintolin -c 'ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO shintolin; GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO shintolin;'",
     "create-migration": "db-migrate create --",
     "migrate-down": "db-migrate down",
     "migrate-up": "db-migrate up",
