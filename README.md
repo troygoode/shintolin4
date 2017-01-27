@@ -11,6 +11,8 @@ In your local development environment, create a configuration file in this direc
 
 ```
 DATABASE_URL=postgres://localhost/shintolin
+DATABASE_DEFAULT_ROLE=shintolin
+JWT_SECRET=secret
 ```
 
 Now run (first time setup):

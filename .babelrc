@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "transform-flow-strip-types"
+  ],
+  "presets": [
+    "node6",
+    "stage-3",
+    "stage-2"
+  ]
+}
