@@ -6,11 +6,6 @@ type FormSubmitEvent = {
   preventDefault: Function
 }
 
-export type FormPayload = {
-  email: string,
-  password: string
-}
-
 export default class LoginForm extends Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired

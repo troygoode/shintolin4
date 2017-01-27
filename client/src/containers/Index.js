@@ -1,0 +1,29 @@
+// @flow
+
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+
+import LoginForm from '../components/LoginForm'
+import * as actions from '../actions'
+import type { SubmitFormPayload } from '../actions' // eslint-disable-line
+
+export class IndexContainer extends Component {
+  static propTypes = {
+    submitLogin: PropTypes.func.isRequired
+  }
+
+  onLogin = (form: SubmitFormPayload) => {
+    this.props.submitLogin(form)
+  }
+
+  render () {
+    return <div><LoginForm onSubmit={this.onLogin} /></div>
+  }
+}
+
+export default connect(
+  (state) => ({}),
+  {
+    submitLogin: actions.submitLogin
+  }
+)(IndexContainer)

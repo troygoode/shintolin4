@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { it } from '../jest'
-import UUT, { Index } from './Index'
+import UUT, { IndexContainer } from './Index'
 
 it('connects without crashing', () => {
   const div = document.createElement('div')
@@ -22,5 +22,5 @@ it('connects without crashing', () => {
 it('renders without crashing', () => {
   const div = document.createElement('div')
   const f1 = () => {}
-  ReactDOM.render(<Index action={f1} />, div)
+  ReactDOM.render(<IndexContainer submitLogin={f1} />, div)
 })
