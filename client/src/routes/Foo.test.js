@@ -1,4 +1,6 @@
-/* global it:true */
+// @flow
+
+declare function it (name: string, callback: Function): void
 
 import React from 'react'
 import ReactDOM from 'react-dom'

@@ -1,11 +1,17 @@
+// @flow
+
 import React, { Component, PropTypes } from 'react'
+
+type FormSubmitEvent = {
+  preventDefault: Function
+}
 
 export default class LoginForm extends Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired
   }
 
-  handleFormSubmit = (e) => {
+  handleFormSubmit = (e: FormSubmitEvent) => {
     e.preventDefault()
 
     const form = {}
