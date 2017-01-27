@@ -6,6 +6,11 @@ type FormSubmitEvent = {
   preventDefault: Function
 }
 
+export type FormPayload = {
+  email: string,
+  password: string
+}
+
 export default class LoginForm extends Component {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired
@@ -14,7 +19,7 @@ export default class LoginForm extends Component {
   handleFormSubmit = (e: FormSubmitEvent) => {
     e.preventDefault()
 
-    const form = {}
+    const form: any = {}
     for (const key of Object.keys(this.refs)) {
       form[key] = this.refs[key].value
     }

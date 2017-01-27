@@ -4,9 +4,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { it } from '../jest'
-import UUT from './Index'
+import UUT, { Index } from './Index'
 
-it('renders without crashing', () => {
+it('connects without crashing', () => {
   const div = document.createElement('div')
 
   // TODO
@@ -17,4 +17,10 @@ it('renders without crashing', () => {
   }
 
   ReactDOM.render(<UUT store={store} />, div)
+})
+
+it('renders without crashing', () => {
+  const div = document.createElement('div')
+  const f1 = () => {}
+  ReactDOM.render(<Index action={f1} />, div)
 })

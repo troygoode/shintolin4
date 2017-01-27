@@ -1,12 +1,17 @@
 // @flow
 
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import LoginForm from '../components/LoginForm'
+import type { FormPayload } from '../components/LoginForm' // eslint-disable-line
 
-class Index extends Component {
-  onLogin = (form) => {
+export class Index extends Component {
+  static propTypes = {
+    action: PropTypes.func.isRequired
+  }
+
+  onLogin = (form: FormPayload) => {
     this.props.action('LOGIN_SUBMITTED', form)
   }
 
