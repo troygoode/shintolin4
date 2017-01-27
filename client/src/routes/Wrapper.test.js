@@ -1,9 +1,9 @@
 // @flow
 
-declare function it (name: string, callback: Function): void
-
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+import { it } from '../jest'
 import UUT from './Wrapper'
 
 it('renders without crashing', () => {
