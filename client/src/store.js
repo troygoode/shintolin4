@@ -1,13 +1,5 @@
 // @flow
 
-type HotModule = {
-  accept: (path: string, cb: Function) => void
-}
-
-declare module module {
-  declare var hot: HotModule
-}
-
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import thunk from 'redux-thunk'
