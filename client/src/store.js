@@ -1,22 +1,23 @@
 // @flow
 
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import { routerReducer, routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { persistState } from 'redux-devtools'
 
+import history from './history'
 import DevTools from './containers/DevTools'
 import reducers from './reducers'
 
 const store = createStore(
   combineReducers({
     ...reducers,
-    routing: routerReducer
+    router: routerReducer
   }),
   {}, // initial state
   compose(
-    applyMiddleware(thunk, logger),
+    applyMiddleware(thunk, logger, routerMiddleware(history)),
     DevTools.instrument(),
     persistState(() => {
       const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
