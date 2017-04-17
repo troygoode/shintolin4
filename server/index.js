@@ -4,6 +4,8 @@ import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
 
+import auth from './auth'
+
 dotenv.config()
 
 const DEFAULT_PORT = 3001
@@ -12,14 +14,10 @@ const server = express()
 // host React client
 if (process.env.NODE_ENV === 'production') {
   // serve client's "build" artifacts
-  server.use(express.static(path.join(__dirname, 'client', 'build')))
+  server.use(express.static(path.join(__dirname, '..', 'client', 'build')))
 }
 
-server.post('/example', (req, res) => {
-  res.json({
-    hello: 'world'
-  })
-})
+server.use('/auth', auth)
 
 // start server
 if (!module.parent) {
