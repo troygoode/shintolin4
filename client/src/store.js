@@ -16,7 +16,7 @@ const store = createStore(
   }),
   {}, // initial state
   compose(
-    applyMiddleware(thunk, logger()),
+    applyMiddleware(thunk, logger),
     DevTools.instrument(),
     persistState(() => {
       const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
