@@ -9,7 +9,7 @@ const style = {
 
 export default class extends Component {
   static propTypes = {
-    code: PropTypes.string.required
+    code: PropTypes.string.isRequired
   }
 
   render () {

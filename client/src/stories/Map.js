@@ -1,39 +1,48 @@
 import React from 'react'
 
-import Pre from './helpers/pre'
 import Tile from '../components/Tile'
+import TileGrid from '../components/TileGrid'
 
-export const Map = () => {
-  const code = `
-    <div>Hello World</div>
-    <div>Hello World</div>
-    <div>Hello World</div>
-  `
+const tiles = [
+  {
+    x: 0,
+    y: 1,
+    z: 0,
+    terrain: 'grassland',
+    building: 'Building',
+    peopleCount: 1,
+    creatureCount: 1,
+    direction: 'Enter'
+  },
+  {
+    x: 1,
+    y: 0,
+    z: 0,
+    terrain: 'default',
+    peopleCount: 0,
+    creatureCount: 0,
+    direction: 'Enter'
+  }
+]
 
+export const Map = ({ onTileClick }) => {
   return (
     <div>
-      <Tile />
-      <Tile />
-      <Tile />
-
-      <p>Lorem ipsum dolor.</p>
-      <Pre code={code} />
+      <TileGrid
+        centerX={0}
+        centerY={0}
+        radius={3}
+        tiles={tiles}
+        navigateToTile={onTileClick} />
     </div>
   )
 }
 
-export const Tiles = () => {
+export const Tiles = ({ onClick }) => {
   return (
     <div>
-      <Tile />
-    </div>
-  )
-}
-
-export const DefaultTile = () => {
-  return (
-    <div>
-      <Tile />
+      <h2>Woodlands Tile w/ Everything</h2>
+      <Tile {...tiles[0]} onClick={onClick} />
     </div>
   )
 }

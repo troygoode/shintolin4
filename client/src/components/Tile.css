@@ -1,0 +1,57 @@
+.tile {
+  background-color: black;
+  color: white;
+  width: 64px;
+  height: 64px;
+  position: relative;
+  font-family: sans-serif;
+  font-size: 11px;
+  cursor: default;
+  border: 1px solid black;
+  outline: 1px solid white;
+  z-index: 0;
+}
+.tile-clickable {
+  cursor: pointer;
+}
+.tile-clickable:hover {
+  top: -3px;
+  left: -3px;
+  z-index: 1;
+}
+.tile-building {
+  width: 64px;
+  height: 16px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tile-direction-button {
+  width: 32px;
+  height: 16px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  position: absolute;
+  top: 24px;
+  left: 16px;
+}
+.tile-creature-count {
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.tile-people-count {
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, .5);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}

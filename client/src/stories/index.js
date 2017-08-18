@@ -1,23 +1,14 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
 import Button from './Button'
-import { Tiles, Map, DefaultTile } from './Map'
-import Welcome from './Welcome'
-
-storiesOf('Welcome', module)
-  .add(null, () => (
-    <Welcome showApp={linkTo('Button')}/>
-  ))
+import { Tiles, Map } from './Map'
 
 storiesOf('Map', module)
   .add('Map', () => (
-    <Map />
+    <Map onTileClick={action('tile clicked')} />
   ))
   .add('Tiles', () => (
-    <Tiles />
-  ))
-  .add('Default Tile', () => (
-    <DefaultTile />
+    <Tiles onClick={action('clicked')} />
   ))
 
 storiesOf('Button', module)
