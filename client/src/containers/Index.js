@@ -12,7 +12,7 @@ type Props = {
   submitLogin: Function
 }
 
-export class IndexContainer extends Component<Props,> {
+export class IndexContainer extends Component<Props, *> {
   static propTypes = {
     submitLogin: PropTypes.func.isRequired
   }

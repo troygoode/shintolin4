@@ -6,7 +6,7 @@ type Props = {
   children: *
 }
 
-export default class extends Component<Props,> {
+export default class extends Component<Props, *> {
   render () {
     return (
       <div>{this.props.children}</div>

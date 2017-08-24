@@ -9,7 +9,7 @@ type MessageSystemProps = {
   timestamp: Date
 }
 
-export class MessageSystem extends Component<MessageSystemProps,> {
+export class MessageSystem extends Component<MessageSystemProps, *> {
   static propTypes = {
     text: PropTypes.string.isRequired,
     timestamp: PropTypes.instanceOf(Date)
@@ -28,7 +28,7 @@ type MessageListProps = {
   messages: Array<Object>
 }
 
-export class MessageList extends Component<MessageListProps,> {
+export class MessageList extends Component<MessageListProps, *> {
   static propTypes = {
     messages: PropTypes.array.isRequired
   }
@@ -46,4 +46,3 @@ export class MessageList extends Component<MessageListProps,> {
     </div>
   }
 }
-

@@ -13,5 +13,5 @@ it('renders without crashing', () => {
     isFriend={true}
     onClick={() => ({})}
     name='name'
-    />, div)
+  />, div)
 })

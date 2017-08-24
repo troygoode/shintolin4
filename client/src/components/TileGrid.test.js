@@ -14,5 +14,5 @@ it('renders without crashing', () => {
     radius={1}
     tiles={[]}
     navigateToTile={() => ({})}
-    />, div)
+  />, div)
 })

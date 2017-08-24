@@ -31,7 +31,7 @@ type Props = {
   onClick: Function
 }
 
-export default class Tile extends Component<Props,> {
+export default class Tile extends Component<Props, *> {
   static propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
@@ -58,13 +58,14 @@ export default class Tile extends Component<Props,> {
       : <div className='tile-creature-count'>{this.props.creatureCount}</div>
     const People = () => this.props.peopleCount <= 0 ? null
       : <div className='tile-people-count'>{this.props.peopleCount}</div>
-    const navigate = (e) => {
-      e.preventDefault()
-      if (!this.props.direction || !this.props.onClick) {
-        return null
-      }
-      this.props.onClick({ x: this.props.x, y: this.props.y, z: this.props.z })
-    }
+
+    // const navigate = (e) => {
+    // e.preventDefault()
+    // if (!this.props.direction || !this.props.onClick) {
+    // return null
+    // }
+    // this.props.onClick({ x: this.props.x, y: this.props.y, z: this.props.z })
+    // }
 
     return (
       <div className={className} onClick={this.props.direction ? this.props.onClick : null}>

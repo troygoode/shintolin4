@@ -11,7 +11,7 @@ type Props = {
   id: string
 }
 
-export default class Tile extends Component<Props,> {
+export default class Tile extends Component<Props, *> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,

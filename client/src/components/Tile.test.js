@@ -18,5 +18,5 @@ it('renders without crashing', () => {
     building={null}
     direction={null}
     onClick={() => ({})}
-    />, div)
+  />, div)
 })
