@@ -1,19 +1,20 @@
 import React from 'react'
+import { withInfo } from '@storybook/addon-info'
 
 import { MessageSystem, MessageList } from '../components/Message'
 
-export const MessagesStory = () => {
+export const MessagesStory = withInfo('MessagesStory')(() => {
   return <div>
     <h2>System Message</h2>
     <MessageSystem text='example text' timestamp={new Date()} />
   </div>
-}
+})
 
-export const InputStory = () => {
+export const InputStory = withInfo('InputStory')(() => {
   return <div>Input</div>
-}
+})
 
-export const MessageListStory = () => {
+export const MessageListStory = withInfo('MessageListStory')(() => {
   const ts = new Date()
   const ticks = ts.getTime()
   const messages = [
@@ -23,4 +24,4 @@ export const MessageListStory = () => {
   ]
 
   return <div><MessageList messages={messages} /></div>
-}
+})

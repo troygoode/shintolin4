@@ -1,4 +1,5 @@
 import React from 'react'
+import { withInfo } from '@storybook/addon-info'
 
 import Presence from '../components/Presence'
 
@@ -18,7 +19,7 @@ const examples = {
   }
 }
 
-export const PresenceStory = ({ onClick }) => {
+export const PresenceStory = withInfo('PresenceStory')(({ onClick }) => {
   return <div>
     <h2>Creature</h2>
     <Presence {...examples.creature} onClick={onClick} />
@@ -36,4 +37,4 @@ export const PresenceStory = ({ onClick }) => {
       <Presence {...examples.friend} onClick={onClick} />
     </div>
   </div>
-}
+})

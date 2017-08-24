@@ -1,4 +1,5 @@
 import React from 'react'
+import { withInfo } from '@storybook/addon-info'
 
 import Tile from '../components/Tile'
 import TileGrid from '../components/TileGrid'
@@ -25,7 +26,7 @@ const tiles = [
   }
 ]
 
-export const MapStory = ({ onTileClick }) => {
+export const MapStory = withInfo('MapStory')(({ onTileClick }) => {
   return (
     <div>
       <TileGrid
@@ -36,13 +37,13 @@ export const MapStory = ({ onTileClick }) => {
         navigateToTile={onTileClick} />
     </div>
   )
-}
+})
 
-export const TilesStory = ({ onClick }) => {
+export const TilesStory = withInfo('TilesStory')(({ onClick }) => {
   return (
     <div>
       <h2>Woodlands Tile w/ Everything</h2>
       <Tile {...tiles[0]} onClick={onClick} />
     </div>
   )
-}
+})
