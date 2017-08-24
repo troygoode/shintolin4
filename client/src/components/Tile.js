@@ -19,7 +19,19 @@ import './Tile-Terrain.css'
  *
  */
 
-export default class Tile extends Component {
+type Props = {
+  x: number,
+  y: number,
+  z: number,
+  terrain: string,
+  peopleCount: number,
+  creatureCount: number,
+  building: ?string,
+  direction: ?string,
+  onClick: Function
+}
+
+export default class Tile extends Component<Props,> {
   static propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
@@ -51,7 +63,7 @@ export default class Tile extends Component {
       if (!this.props.direction || !this.props.onClick) {
         return null
       }
-      onClick({ x, y, z })
+      this.props.onClick({ x: this.props.x, y: this.props.y, z: this.props.z })
     }
 
     return (

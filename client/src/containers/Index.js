@@ -8,7 +8,11 @@ import LoginForm from '../components/LoginForm'
 import * as actions from '../actions'
 import type { SubmitFormPayload } from '../actions' // eslint-disable-line
 
-export class IndexContainer extends Component {
+type Props = {
+  submitLogin: Function
+}
+
+export class IndexContainer extends Component<Props,> {
   static propTypes = {
     submitLogin: PropTypes.func.isRequired
   }

@@ -4,7 +4,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './Message.css'
 
-export class MessageSystem extends Component {
+type MessageSystemProps = {
+  text: string,
+  timestamp: Date
+}
+
+export class MessageSystem extends Component<MessageSystemProps,> {
   static propTypes = {
     text: PropTypes.string.isRequired,
     timestamp: PropTypes.instanceOf(Date)
@@ -19,7 +24,11 @@ export class MessageSystem extends Component {
   }
 }
 
-export class MessageList extends Component {
+type MessageListProps = {
+  messages: Array<Object>
+}
+
+export class MessageList extends Component<MessageListProps,> {
   static propTypes = {
     messages: PropTypes.array.isRequired
   }

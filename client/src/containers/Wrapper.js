@@ -1,9 +1,12 @@
 // @flow
 
 import React, {Component} from 'react'
-// import { Link, browserHistory } from 'react-router'
 
-export default class extends Component {
+type Props = {
+  children: *
+}
+
+export default class extends Component<Props,> {
   render () {
     return (
       <div>{this.props.children}</div>

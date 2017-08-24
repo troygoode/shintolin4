@@ -4,7 +4,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './Presence.css'
 
-export default class Tile extends Component {
+type Props = {
+  name: string,
+  onClick: Function,
+  isFriend: boolean,
+  id: string
+}
+
+export default class Tile extends Component<Props,> {
   static propTypes = {
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,

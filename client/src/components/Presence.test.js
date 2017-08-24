@@ -8,5 +8,10 @@ import UUT from './Presence'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<UUT />, div)
+  ReactDOM.render(<UUT
+    id={'id'}
+    isFriend={true}
+    onClick={() => ({})}
+    name='name'
+    />, div)
 })

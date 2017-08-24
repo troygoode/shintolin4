@@ -14,7 +14,15 @@ const range = (start, end) => {
   return retval
 }
 
-export default class TileGrid extends Component {
+type Props = {
+  centerX: number,
+  centerY: number,
+  radius: number,
+  tiles: Array<Object>,
+  navigateToTile: Function
+}
+
+export default class TileGrid extends Component<Props,> {
   static propTypes = {
     centerX: PropTypes.number.isRequired,
     centerY: PropTypes.number.isRequired,
@@ -37,7 +45,9 @@ export default class TileGrid extends Component {
         z: 0,
         terrain: 'default',
         peopleCount: 0,
-        creatureCount: 0
+        creatureCount: 0,
+        building: null,
+        direction: null
       }
       return <div className='tile-grid-cell'><Tile {...tile} onClick={this.props.navigateToTile} /></div>
     }

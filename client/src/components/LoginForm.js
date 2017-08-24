@@ -7,7 +7,11 @@ type FormSubmitEvent = {
   preventDefault: Function
 }
 
-export default class LoginForm extends Component {
+type Props = {
+  onSubmit: Function
+}
+
+export default class LoginForm extends Component<Props,> {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired
   }
