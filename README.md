@@ -4,14 +4,13 @@
 
 You must have the following installed:
 
-* node.js 6+
+* node.js 8+
 * PostgreSQL 9.6+
 
 In your local development environment, create a configuration file in this directory named `.env`:
 
 ```
 DATABASE_URL=postgres://localhost/shintolin
-DATABASE_DEFAULT_ROLE=shintolin
 JWT_SECRET=secret
 ```
 

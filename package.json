@@ -4,10 +4,13 @@
   "private": true,
   "main": "server.js",
   "license": "MIT",
+  "engines": {
+    "node": "^8"
+  },
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-preset-node6": "^11.0.0",
+    "babel-preset-node8": "^1.2.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "concurrently": "^3.5.0",
