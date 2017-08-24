@@ -9,7 +9,7 @@ const tiles = [
     y: 1,
     z: 0,
     terrain: 'grassland',
-    building: 'Building',
+    building: 'Hut',
     peopleCount: 1,
     creatureCount: 1,
     direction: 'Enter'
@@ -21,16 +21,16 @@ const tiles = [
     terrain: 'default',
     peopleCount: 0,
     creatureCount: 0,
-    direction: 'Enter'
+    direction: 'NE'
   }
 ]
 
-export const Map = ({ onTileClick }) => {
+export const MapStory = ({ onTileClick }) => {
   return (
     <div>
       <TileGrid
         centerX={0}
-        centerY={0}
+        centerY={1}
         radius={3}
         tiles={tiles}
         navigateToTile={onTileClick} />
@@ -38,7 +38,7 @@ export const Map = ({ onTileClick }) => {
   )
 }
 
-export const Tiles = ({ onClick }) => {
+export const TilesStory = ({ onClick }) => {
   return (
     <div>
       <h2>Woodlands Tile w/ Everything</h2>

@@ -46,6 +46,13 @@ export default class Tile extends Component {
       : <div className='tile-creature-count'>{this.props.creatureCount}</div>
     const People = () => this.props.peopleCount <= 0 ? null
       : <div className='tile-people-count'>{this.props.peopleCount}</div>
+    const navigate = (e) => {
+      e.preventDefault()
+      if (!this.props.direction || !this.props.onClick) {
+        return null
+      }
+      onClick({ x, y, z })
+    }
 
     return (
       <div className={className} onClick={this.props.direction ? this.props.onClick : null}>

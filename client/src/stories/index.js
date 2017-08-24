@@ -1,20 +1,30 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
-import Button from './Button'
-import { Tiles, Map } from './Map'
+
+import { TilesStory, MapStory } from './Map'
+import { PresenceStory } from './Presence'
+import { MessagesStory, InputStory, MessageListStory } from './Chat'
 
 storiesOf('Map', module)
   .add('Map', () => (
-    <Map onTileClick={action('tile clicked')} />
+    <MapStory onTileClick={action('tile clicked')} />
   ))
   .add('Tiles', () => (
-    <Tiles onClick={action('clicked')} />
+    <TilesStory onClick={action('clicked')} />
   ))
 
-storiesOf('Button', module)
-  .add('with text', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
+storiesOf('Presence', module)
+  .add('Presence', () => (
+    <PresenceStory onClick={action('clicked')} />
   ))
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
+
+storiesOf('Chat', module)
+  .add('Messages', () => (
+    <MessagesStory />
+  ))
+  .add('Input', () => (
+    <InputStory onSend={action('sent')} />
+  ))
+  .add('Message List + Input', () => (
+    <MessageListStory onSend={action('sent')} />
   ))

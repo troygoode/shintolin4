@@ -1,0 +1,61 @@
+.presence-list .presence-item {
+  margin-bottom: 2px;
+  outline: 1px solid white;
+}
+.presence-list .presence-item:last-child {
+  margin-bottom: 0;
+}
+
+.presence-item {
+  width: 200px;
+  height: 18px;
+  background-color: #ddd;
+  font-family: sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.presence-item:hover {
+  top: -2px;
+  left: -2px;
+}
+
+.presence-item .presence-item-tag {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background-color: black;
+  margin-right: 4px;
+  vertical-align: top;
+}
+.presence-item .presence-item-text {
+  display: inline-block;
+  height: 18px;
+  vertical-align: top;
+  padding-top: 3px;
+}
+.presence-item .presence-item-id {
+  display: inline-block;
+  height: 18px;
+  vertical-align: top;
+  position: absolute;
+  right: 0;
+  padding: 3px 5px;
+  background-color: rgba(255, 255, 255, .4);
+  font-family: monospace;
+}
+
+.presence-item-friend {
+  background-color: lightgreen;
+}
+.presence-item-friend .presence-item-tag {
+  background-color: green;
+}
+
+.presence-item-creature {
+  background-color: pink;
+}
+.presence-item-creature .presence-item-tag {
+  background-color: red;
+}
