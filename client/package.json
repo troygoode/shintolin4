@@ -5,15 +5,15 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-info": "^3.2.7",
-    "@storybook/react": "3.2.8",
+    "@storybook/react": "3.2.16",
     "react-scripts": "^1.0.11"
   },
   "dependencies": {
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",

@@ -15,18 +15,21 @@ import store from './store'
 
 import './index.css'
 
-ReactDOM.render(
-  <Provider store={store}>
-    { /* Tell the Router to use our enhanced history */ }
-    <div>
-      <ConnectedRouter history={history}>
-        <Wrapper>
-          <Route exact path="/" component={Index} />
-          <Route path="/foo" component={Foo} />
-        </Wrapper>
-      </ConnectedRouter>
-      <DevTools />
-    </div>
-  </Provider>,
-  document.getElementById('root')
-)
+const root = document.getElementById('root')
+if (root) {
+  ReactDOM.render(
+    <Provider store={store}>
+      { /* Tell the Router to use our enhanced history */ }
+      <div>
+        <ConnectedRouter history={history}>
+          <Wrapper>
+            <Route exact path="/" component={Index} />
+            <Route path="/foo" component={Foo} />
+          </Wrapper>
+        </ConnectedRouter>
+        <DevTools />
+      </div>
+    </Provider>,
+    root
+  )
+}
