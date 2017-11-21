@@ -13,8 +13,9 @@ it('renders without crashing', () => {
     y={0}
     z={0}
     terrain='terrain'
-    creatureCount={0}
-    peopleCount={0}
+    highlight={false}
+    creatures={[]}
+    players={[]}
     building={null}
     direction={null}
     onClick={() => ({})}

@@ -1,6 +1,93 @@
-.tile-terrain-default {
-  background-color: #336699;
+.tile-terrain-beach {
+  background-color: rgb(235,232,202);
 }
-.tile-terrain-grassland {
-  background-color: green;
+.tile-terrain-denseforest {
+  background-color: rgb(39,65,32);
+}
+.tile-terrain-dirt {
+  background-color: rgb(170,172,97);
+}
+.tile-terrain-deepwater, .tile-terrain-default {
+  background-color: rgb(103,126,163);
+}
+.tile-terrain-field_a {
+  background-color: rgb(206,194,73);
+}
+.tile-terrain-field_e {
+  background-color: rgb(140,139,97);
+}
+.tile-terrain-field_s {
+  background-color: rgb(179,200,78);
+}
+.tile-terrain-flood {
+  background-color: rgb(183,181,109);
+}
+.tile-terrain-forest {
+  background-color: rgb(35,82,28);
+}
+.tile-terrain-gate {
+  background-color: rgb(41,41,33);
+}
+.tile-terrain-grass {
+  background-color: rgb(99,162,81);
+}
+.tile-terrain-grey {
+  background-color: rgb(173,175,147);
+}
+.tile-terrain-hill {
+  background-color: rgb(141,192,78);
+}
+.tile-terrain-hill1_side {
+  background-color: rgb(153,178,84);
+}
+.tile-terrain-hill1_top {
+  background-color: rgb(143,177,70);
+}
+.tile-terrain-hill2_side {
+  background-color: rgb(167,199,114);
+}
+.tile-terrain-hill2_top {
+  background-color: rgb(171,194,132);
+}
+.tile-terrain-hill3_side {
+  background-color: rgb(185,211,137);
+}
+.tile-terrain-hill3_top {
+  background-color: rgb(171,199,132);
+}
+.tile-terrain-lightforest {
+  background-color: rgb(65,91,34);
+}
+.tile-terrain-lightgrey {
+  background-color: rgb(195,195,170);
+}
+.tile-terrain-marsh {
+  background-color: rgb(128,217,145);
+}
+.tile-terrain-ocean {
+  background-color: rgb(73,86,102);
+}
+.tile-terrain-rapids {
+  background-color: rgb(148,187,215);
+}
+.tile-terrain-river {
+  background-color: rgb(126,142,226);
+}
+.tile-terrain-road {
+  background-color: rgb(210,209,196);
+}
+.tile-terrain-rshore {
+  background-color: rgb(152,152,136);
+}
+.tile-terrain-ruins {
+  background-color: rgb(175,113,54);
+}
+.tile-terrain-spring {
+  background-color: rgb(112,102,211);
+}
+.tile-terrain-wall, .tile-terrain-nothing {
+  background-color: rgb(42,42,34);
+}
+.tile-terrain-wilderness {
+  background-color: rgb(146,141,75);
 }

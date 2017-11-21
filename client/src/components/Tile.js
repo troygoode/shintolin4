@@ -19,13 +19,22 @@ import './Tile-Terrain.css'
  *
  */
 
+type Player = {
+  name: string
+}
+
+type Creature = {
+  name: string
+}
+
 type Props = {
   x: number,
   y: number,
   z: number,
+  highlight: boolean,
   terrain: string,
-  peopleCount: number,
-  creatureCount: number,
+  players: Array<Player>,
+  creatures: Array<Creature>,
   building: ?string,
   direction: ?string,
   onClick: Function
@@ -36,28 +45,32 @@ export default class Tile extends Component<Props, *> {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
     z: PropTypes.number.isRequired,
+    highlight: PropTypes.bool,
     terrain: PropTypes.string.isRequired,
-    peopleCount: PropTypes.number.isRequired,
-    creatureCount: PropTypes.number.isRequired,
+    players: PropTypes.array.isRequired,
+    creatures: PropTypes.array.isRequired,
     building: PropTypes.string,
     direction: PropTypes.string,
     onClick: PropTypes.func
   }
 
   render () {
+    const peopleCount = this.props.players.length
+    const creatureCount = this.props.creatures.length
     const className = [
       'tile',
+      this.props.highlight ? 'tile-highlight' : null,
       (this.props.direction && this.props.onClick) ? 'tile-clickable' : null,
       `tile-terrain-${this.props.terrain}`
     ].filter((c) => !!c).join(' ')
     const Direction = () => !this.props.direction ? null
-      : <div className='tile-direction-button'>{this.props.direction}</div>
+      : <div className='tile-content'><div className='tile-direction-button'>{this.props.direction}</div></div>
     const Building = () => !this.props.building ? null
-      : <div className='tile-building'>{this.props.building}</div>
-    const Creatures = () => this.props.creatureCount <= 0 ? null
-      : <div className='tile-creature-count'>{this.props.creatureCount}</div>
-    const People = () => this.props.peopleCount <= 0 ? null
-      : <div className='tile-people-count'>{this.props.peopleCount}</div>
+      : <div className='tile-content'><div className='tile-building'>{this.props.building}</div></div>
+    const Creatures = () => creatureCount <= 0 ? null
+      : <div className='tile-content'><div className='tile-creature-count'>{creatureCount}</div></div>
+    const People = () => peopleCount <= 0 ? null
+      : <div className='tile-content'><div className='tile-people-count'>{peopleCount}</div></div>
 
     // const navigate = (e) => {
     // e.preventDefault()
@@ -69,10 +82,10 @@ export default class Tile extends Component<Props, *> {
 
     return (
       <div className={className} onClick={this.props.direction ? this.props.onClick : null}>
-        <Building />
         <Direction />
-        <Creatures />
+        <Building />
         <People />
+        <Creatures />
       </div>
     )
   }

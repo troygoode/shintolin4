@@ -7,22 +7,47 @@ import TileGrid from '../components/TileGrid'
 const tiles = [
   {
     x: 0,
+    y: -1,
+    z: 0,
+    terrain: 'grass',
+    players: [],
+    creatures: []
+  },
+  {
+    x: -1,
+    y: 0,
+    z: 0,
+    terrain: 'grass',
+    players: [],
+    creatures: [],
+    direction: 'NW'
+  },
+  {
+    x: 0,
     y: 1,
     z: 0,
-    terrain: 'grassland',
+    terrain: 'grass',
     building: 'Hut',
-    peopleCount: 1,
-    creatureCount: 1,
+    players: [],
+    creatures: [],
     direction: 'Enter'
   },
   {
     x: 1,
     y: 0,
     z: 0,
-    terrain: 'default',
-    peopleCount: 0,
-    creatureCount: 0,
+    terrain: 'grass',
+    players: [],
+    creatures: [],
     direction: 'NE'
+  },
+  {
+    x: 0,
+    y: 2,
+    z: 0,
+    terrain: 'grass',
+    players: [],
+    creatures: []
   }
 ]
 

@@ -44,12 +44,13 @@ export default class TileGrid extends Component<Props, *> {
         y,
         z: 0,
         terrain: 'default',
-        peopleCount: 0,
-        creatureCount: 0,
+        players: [],
+        creatures: [],
         building: null,
         direction: null
       }
-      return <div className='tile-grid-cell'><Tile {...tile} onClick={this.props.navigateToTile} /></div>
+      const highlight = x === this.props.centerX && y === this.props.centerY
+      return <div className='tile-grid-cell'><Tile {...tile} highlight={highlight} onClick={this.props.navigateToTile} /></div>
     }
 
     const Row = ({ y }) => {

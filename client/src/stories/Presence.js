@@ -14,7 +14,7 @@ const examples = {
   },
 
   creature: {
-    id: 'abcde',
+    id: 'A1B2C',
     name: 'Creature'
   }
 }
