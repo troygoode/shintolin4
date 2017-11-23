@@ -40,7 +40,7 @@
   padding: 2px 0 0 0;
   font-size: 12px;
 }
-.tile-building, .tile-people-count, .tile-creature-count {
+.tile-building, .tile-player, .tile-creature {
   height: 12px;
   font-size: 10px;
   text-align: center;

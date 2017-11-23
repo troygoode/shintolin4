@@ -5,6 +5,10 @@ import PropTypes from 'prop-types'
 import './Tile.css'
 import './Tile-Terrain.css'
 
+const LINE_ITEM_LIMIT = 5
+const ITEM_COST = 1
+const DIRECTION_COST = 2
+
 /*
  * What is a <Tile />?
  *
@@ -20,10 +24,12 @@ import './Tile-Terrain.css'
  */
 
 type Player = {
+  id: number,
   name: string
 }
 
 type Creature = {
+  id: number,
   name: string
 }
 
@@ -38,6 +44,46 @@ type Props = {
   building: ?string,
   direction: ?string,
   onClick: Function
+}
+
+const Direction = ({ direction }) => {
+  return <div className='tile-content'><div className='tile-direction-button'>{direction}</div></div>
+}
+
+const Building = ({ building }) => {
+  return <div className='tile-content'><div className='tile-building'>◾️ {building}</div></div>
+}
+
+const CreatureList = ({ creatures }) => {
+  if (!creatures || !creatures.length) {
+    return null
+  }
+  return creatures.map((creature) => {
+    return <div key={creature.id} className='tile-content'><div className='tile-creature'>{creature.name}</div></div>
+  })
+}
+
+const CreatureCount = ({ creatures }) => {
+  if (!creatures || !creatures.length) {
+    return null
+  }
+  return <div className='tile-content'><div className='tile-creature-count'>{creatures.length}</div></div>
+}
+
+const PlayerList = ({ players }) => {
+  if (!players || !players.length) {
+    return null
+  }
+  return players.map((player) => {
+    return <div key={player.id} className='tile-content'><div className='tile-player'>{player.name}</div></div>
+  })
+}
+
+const PlayerCount = ({ players }) => {
+  if (!players || !players.length) {
+    return null
+  }
+  return <div className='tile-content'><div className='tile-player-count'>{players.length}</div></div>
 }
 
 export default class Tile extends Component<Props, *> {
@@ -55,37 +101,61 @@ export default class Tile extends Component<Props, *> {
   }
 
   render () {
-    const peopleCount = this.props.players.length
-    const creatureCount = this.props.creatures.length
+    const { direction, building, players, creatures, highlight, terrain, onClick } = this.props
+    const showDirection = !!direction
+    const showBuilding = !!building
+    const showPlayers = players.length > 0
+    const showCreatures = creatures.length > 0
+
+    let limit = LINE_ITEM_LIMIT
+    if (showDirection) {
+      limit -= DIRECTION_COST
+    }
+    if (showBuilding) {
+      limit -= ITEM_COST
+    }
+
+    let actorDisplay = 'none'
+    if (players.length + creatures.length < limit) {
+      actorDisplay = 'all'
+    } else if ((creatures.length === 0 && players.length <= limit) || (players.length + 1 <= limit)) {
+      actorDisplay = 'players'
+    } else if ((players.length === 0 && creatures.length <= limit) || (creatures.length + 1 <= limit)) {
+      actorDisplay = 'creatures'
+    } else {
+      actorDisplay = 'counts-only'
+    }
+
     const className = [
       'tile',
-      this.props.highlight ? 'tile-highlight' : null,
-      (this.props.direction && this.props.onClick) ? 'tile-clickable' : null,
-      `tile-terrain-${this.props.terrain}`
+      highlight ? 'tile-highlight' : null,
+      (showDirection && onClick) ? 'tile-clickable' : null,
+      `tile-terrain-${terrain}`
     ].filter((c) => !!c).join(' ')
-    const Direction = () => !this.props.direction ? null
-      : <div className='tile-content'><div className='tile-direction-button'>{this.props.direction}</div></div>
-    const Building = () => !this.props.building ? null
-      : <div className='tile-content'><div className='tile-building'>{this.props.building}</div></div>
-    const Creatures = () => creatureCount <= 0 ? null
-      : <div className='tile-content'><div className='tile-creature-count'>{creatureCount}</div></div>
-    const People = () => peopleCount <= 0 ? null
-      : <div className='tile-content'><div className='tile-people-count'>{peopleCount}</div></div>
 
-    // const navigate = (e) => {
-    // e.preventDefault()
-    // if (!this.props.direction || !this.props.onClick) {
-    // return null
-    // }
-    // this.props.onClick({ x: this.props.x, y: this.props.y, z: this.props.z })
-    // }
+    const handleClick = (e) => {
+      if (!direction || !onClick) {
+        return null
+      }
+      onClick({ direction, x: this.props.x, y: this.props.y, z: this.props.z })
+    }
 
     return (
-      <div className={className} onClick={this.props.direction ? this.props.onClick : null}>
-        <Direction />
-        <Building />
-        <People />
-        <Creatures />
+      <div className={className} onClick={handleClick}>
+        {showDirection ? <Direction direction={direction} /> : null}
+        {showBuilding ? <Building building={building} /> : null}
+        {showPlayers && (actorDisplay === 'all' || actorDisplay === 'players')
+          ? <PlayerList players={players} />
+          : null}
+        {showPlayers && (actorDisplay === 'creatures' || actorDisplay === 'counts-only')
+          ? <PlayerCount players={players} />
+          : null}
+        {showCreatures && (actorDisplay === 'all' || actorDisplay === 'creatures')
+          ? <CreatureList creatures={creatures} />
+          : null}
+        {showCreatures && (actorDisplay === 'players' || actorDisplay === 'counts-only')
+          ? <CreatureCount creatures={creatures} />
+          : null}
       </div>
     )
   }

@@ -18,7 +18,10 @@ const tiles = [
     y: 0,
     z: 0,
     terrain: 'grass',
-    players: [],
+    players: [
+      { id: 1, name: 'Ecce' },
+      { id: 2, name: 'Test2' },
+    ],
     creatures: [],
     direction: 'NW'
   },
@@ -37,7 +40,7 @@ const tiles = [
     y: 0,
     z: 0,
     terrain: 'grass',
-    players: [],
+    players: [{ id: 3, name: 'Test3' }],
     creatures: [],
     direction: 'NE'
   },
