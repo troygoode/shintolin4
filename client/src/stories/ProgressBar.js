@@ -4,7 +4,29 @@ import { withInfo } from '@storybook/addon-info'
 import ProgressBar from '../components/ProgressBar'
 
 export const ProgressBarStory = withInfo('ProgressBarStory')(() => {
+  const mapper = () => 'example'
+
   return <div>
-    <ProgressBar value={5} max={10} />
+    <h2>50%</h2>
+    <div>
+      <ProgressBar value={5} max={10} />
+    </div>
+    <div>
+      <ProgressBar value={5} max={10} color='red' />
+    </div>
+    <div>
+      <ProgressBar value={5} max={10} color='green' />
+    </div>
+    <div>
+      <ProgressBar value={5} max={10} color='yellow' />
+    </div>
+    <div>
+      <ProgressBar value={5} max={10} color='blue' />
+    </div>
+
+    <h2>Custom Text Mapping</h2>
+    <div>
+      <ProgressBar value={5} max={10} textMapper={mapper} />
+    </div>
   </div>
 })

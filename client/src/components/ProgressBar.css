@@ -1,0 +1,40 @@
+.progress-bar {
+  display: inline-block;
+  width: 200px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: #5f3711;
+  overflow: hidden;
+  position: relative;
+}
+.progress-bar .progress-bar-progress {
+  float: left;
+  width: 0;
+  height: 100%;
+  background-color: red;
+}
+.progress-bar.blue .progress-bar-progress {
+  background-image: linear-gradient(to bottom,#337ab7 0,#286090 100%);
+}
+.progress-bar.yellow .progress-bar-progress {
+  background-image: linear-gradient(to bottom,#f0ad4e 0,#ec971f 100%);
+}
+.progress-bar.green .progress-bar-progress {
+  background-image: linear-gradient(to bottom,#5cb85c 0,#449d44 100%);
+}
+.progress-bar.red .progress-bar-progress {
+  background-image: linear-gradient(to bottom,#d9534f 0,#c9302c 100%);
+}
+.progress-bar .progress-bar-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: white;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  padding-top: 3px;
+}

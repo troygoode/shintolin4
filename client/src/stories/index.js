@@ -7,6 +7,8 @@ import { PresenceStory } from './Presence'
 import { MessagesStory, InputStory, MessageListStory } from './Chat'
 import { ProgressBarStory } from './ProgressBar'
 
+import '../index.css'
+
 storiesOf('Map', module)
   .add('Map', () => (
     <MapStory onTileClick={action('tile clicked')} />
