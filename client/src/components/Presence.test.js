@@ -11,7 +11,7 @@ it('renders without crashing', () => {
   ReactDOM.render(<UUT
     id={'id'}
     isFriend={true}
-    onClick={() => ({})}
+    onClick={() => {}}
     name='name'
   />, div)
 })

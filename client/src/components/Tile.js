@@ -33,6 +33,13 @@ type Creature = {
   name: string
 }
 
+type TileRef = {
+  direction: string,
+  x: number,
+  y: number,
+  z: number
+}
+
 type Props = {
   x: number,
   y: number,
@@ -43,7 +50,7 @@ type Props = {
   creatures: Array<Creature>,
   building: ?string,
   direction: ?string,
-  onClick: Function
+  onClick?: (TileRef) => void
 }
 
 const Direction = ({ direction }) => {

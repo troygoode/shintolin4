@@ -6,14 +6,16 @@ import PropTypes from 'prop-types'
 type Props = {
   min?: number,
   max: number,
-  value: number
+  value: number,
+  textMapper?: (number) => string
 }
 
 export default class ProgressBar extends Component<Props, *> {
   static propTypes = {
     min: PropTypes.number,
     max: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired
+    value: PropTypes.number.isRequired,
+    textMapper: PropTypes.func
   }
 
   render () {

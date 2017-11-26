@@ -18,8 +18,8 @@ type Props = {
   centerX: number,
   centerY: number,
   radius: number,
-  tiles: Array<Object>,
-  navigateToTile: Function
+  tiles: Array<any>,
+  navigateToTile?: () => any
 }
 
 export default class TileGrid extends Component<Props, *> {
@@ -28,7 +28,7 @@ export default class TileGrid extends Component<Props, *> {
     centerY: PropTypes.number.isRequired,
     radius: PropTypes.number.isRequired,
     tiles: PropTypes.array.isRequired,
-    navigateToTile: PropTypes.func.isRequired
+    navigateToTile: PropTypes.func
   }
 
   render () {

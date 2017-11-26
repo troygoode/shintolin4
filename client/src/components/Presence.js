@@ -6,7 +6,7 @@ import './Presence.css'
 
 type Props = {
   name: string,
-  onClick: Function,
+  onClick: (any) => void,
   isFriend: boolean,
   id: string
 }

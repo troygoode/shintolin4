@@ -18,6 +18,5 @@ it('renders without crashing', () => {
     players={[]}
     building={null}
     direction={null}
-    onClick={() => ({})}
   />, div)
 })

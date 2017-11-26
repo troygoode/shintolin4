@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions'
 import { TilesStory, MapStory } from './Map'
 import { PresenceStory } from './Presence'
 import { MessagesStory, InputStory, MessageListStory } from './Chat'
+import { ProgressBarStory } from './ProgressBar'
 
 storiesOf('Map', module)
   .add('Map', () => (
@@ -12,11 +13,6 @@ storiesOf('Map', module)
   ))
   .add('Tiles', () => (
     <TilesStory onClick={action('clicked')} />
-  ))
-
-storiesOf('Presence', module)
-  .add('Presence', () => (
-    <PresenceStory onClick={action('clicked')} />
   ))
 
 storiesOf('Chat', module)
@@ -28,4 +24,14 @@ storiesOf('Chat', module)
   ))
   .add('Message List + Input', () => (
     <MessageListStory onSend={action('sent')} />
+  ))
+
+storiesOf('ProgressBar', module)
+  .add('ProgressBar', () => (
+    <ProgressBarStory />
+  ))
+
+storiesOf('Presence', module)
+  .add('Presence', () => (
+    <PresenceStory onClick={action('clicked')} />
   ))
