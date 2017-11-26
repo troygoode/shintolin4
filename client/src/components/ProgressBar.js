@@ -10,7 +10,7 @@ type Props = {
   textMapper?: (number) => string
 }
 
-export default class ProgressBar extends Component<Props, *> {
+export default class ProgressBar extends Component<Props> {
   static propTypes = {
     min: PropTypes.number,
     max: PropTypes.number.isRequired,

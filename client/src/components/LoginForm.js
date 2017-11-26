@@ -3,33 +3,32 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-type FormSubmitEvent = {
-  preventDefault: Function
+type OnSubmitParams = {
+  email: string,
+  password: string
 }
 
 type Props = {
-  onSubmit: Function
+  onSubmit: (OnSubmitParams) => void
 }
 
-export default class LoginForm extends Component<Props, *> {
+export default class LoginForm extends Component<Props> {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired
   }
 
-  handleFormSubmit = (e: FormSubmitEvent) => {
-    e.preventDefault()
-
-    const form: any = {}
-    for (const key of Object.keys(this.refs)) {
-      form[key] = this.refs[key].value
-    }
-    this.props.onSubmit(form)
-  }
-
   render () {
+    const handleFormSubmit = (e) => {
+      e.preventDefault()
+      this.props.onSubmit({
+        email: this.refs.email.value,
+        password: this.refs.password.value
+      })
+    }
+
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={handleFormSubmit}>
           <fieldset>
             <div>
               <label htmlFor="email">Email Address</label>

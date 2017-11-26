@@ -22,7 +22,7 @@ type Props = {
   navigateToTile?: () => any
 }
 
-export default class TileGrid extends Component<Props, *> {
+export default class TileGrid extends Component<Props> {
   static propTypes = {
     centerX: PropTypes.number.isRequired,
     centerY: PropTypes.number.isRequired,

@@ -97,7 +97,7 @@ const PlayerCount = ({ players }) => {
   return <div className='tile-content'><div className='tile-player-count'>{players.length}</div></div>
 }
 
-export default class Tile extends Component<Props, *> {
+export default class Tile extends Component<Props> {
   static propTypes = {
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
