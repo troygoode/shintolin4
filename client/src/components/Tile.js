@@ -51,7 +51,11 @@ const Direction = ({ direction }) => {
 }
 
 const Building = ({ building }) => {
-  return <div className='tile-content'><div className='tile-building'>◾️ {building}</div></div>
+  return <div className='tile-content'>
+    <div className='tile-building'>
+      <span>◾️ {building}</span>
+    </div>
+  </div>
 }
 
 const CreatureList = ({ creatures }) => {

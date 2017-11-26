@@ -12,7 +12,7 @@ type MessageSystemProps = {
 export class MessageSystem extends Component<MessageSystemProps, *> {
   static propTypes = {
     text: PropTypes.string.isRequired,
-    timestamp: PropTypes.instanceOf(Date)
+    timestamp: PropTypes.instanceOf(Date).isRequired
   }
 
   render () {

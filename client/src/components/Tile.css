@@ -23,8 +23,9 @@
   z-index: 1;
   outline: 1px solid white;
 }
+
 .tile-content {
-  margin: 4px 0;
+  margin: 2px 0 0 0;
   text-align: center;
 }
 .tile-content > div {
@@ -33,27 +34,30 @@
 .tile-direction-button {
   width: 48px;
   height: 16px;
+  overflow: hidden;
   text-align: center;
   background-image: linear-gradient(to bottom, #fff, #eee);
   box-shadow: 0px 1px 2px #666666;
   color: #000;
   padding: 2px 0 0 0;
   font-size: 12px;
+  margin-bottom: 2px;
 }
-.tile-building, .tile-player, .tile-creature {
+.tile-building, .tile-player, .tile-player-count, .tile-creature, .tile-creature-count {
   height: 12px;
   font-size: 10px;
   text-align: center;
-  background-color: rgba(0, 0, 0, .5);
+  /* background-color: rgba(0, 0, 0, .5); */
+  background-color: #5f3711;
   border-radius: 3px;
-  padding: 2px 5px;
+  padding: 2px 7px;
 }
 .tile-building {
+  padding-top: 0;
 }
-.tile-people-count {
-}
-.tile-creature-count {
-  background-color: rgba(255, 0, 0, .6);
+.tile-building > span {
+  position: relative;
+  top: -1px;
 }
 
 /* one item */
