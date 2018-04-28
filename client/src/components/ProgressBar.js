@@ -31,7 +31,7 @@ export default class ProgressBar extends Component<Props> {
   render () {
     const { min = 0, max, value, color = 'blue', textMapper } = this.props
     const percentage = clamp(0, 100, Math.floor(((value - min) / (max - min)) * 100))
-    const text = textMapper ? textMapper(value) : `${Math.floor(value)}/${Math.floor(max)}`
+    const text = (textMapper && textMapper(value)) || `${Math.floor(value)}/${Math.floor(max)}`
 
     return (
       <div className={`progress-bar ${color}`}>

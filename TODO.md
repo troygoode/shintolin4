@@ -2,7 +2,7 @@
 
 ## Client / UI Components
 
-* [ ] Health/AP/Hunger/Weight Bars
+* [x] Health/AP/Hunger/Weight Bars
 * [ ] Dazed CTA
 * [ ] Map Header
 * [ ] Mini-Map & Tiles
