@@ -1,6 +1,7 @@
 // @flow
 
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 
 type Props = {
   children: *
@@ -9,7 +10,16 @@ type Props = {
 export default class extends Component<Props, *> {
   render () {
     return (
-      <div>{this.props.children}</div>
+      <div>
+        <ul>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/foo'>Foo</Link></li>
+        </ul>
+
+        <hr />
+
+        <div>{this.props.children}</div>
+      </div>
     )
   }
 }
