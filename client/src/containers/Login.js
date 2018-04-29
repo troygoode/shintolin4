@@ -12,7 +12,7 @@ type Props = {
   submitLogin: Function
 }
 
-export class IndexContainer extends Component<Props, *> {
+export class LoginContainer extends Component<Props> {
   static propTypes = {
     submitLogin: PropTypes.func.isRequired
   }
@@ -26,9 +26,9 @@ export class IndexContainer extends Component<Props, *> {
   }
 }
 
-export default connect(
-  (state) => ({}),
-  {
-    submitLogin: actions.submitLogin
-  }
-)(IndexContainer)
+const mapPropsToState = () => ({})
+const mapDispatchToProps = (dispatch) => ({
+  submitLogin: actions.submitLogin(dispatch)
+})
+
+export default connect(mapPropsToState, mapDispatchToProps)(LoginContainer)

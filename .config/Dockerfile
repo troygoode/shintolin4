@@ -7,6 +7,7 @@ COPY . .
 # install OS dependencies
 RUN apk add --no-cache bash
 RUN apk add --no-cache curl
+RUN apk add --no-cache ncurses
 
 # install Flow dependencies
 RUN apk --no-cache add ca-certificates wget && \

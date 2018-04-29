@@ -1,6 +1,6 @@
 // @flow
 
-type Dispatcher = (obj: Object) => void
+import type { Dispatch } from '../types/dispatch'
 
 export const LOGIN_SUBMIT = 'LOGIN_SUBMIT'
 
@@ -9,9 +9,6 @@ export type SubmitFormPayload = {
   password: string
 }
 
-export const submitLogin = (form: SubmitFormPayload) => (dispatch: Dispatcher) => {
-  dispatch({
-    type: LOGIN_SUBMIT,
-    payload: form
-  })
+export const submitLogin = (dispatch: Dispatch<SubmitFormPayload>) => (form: SubmitFormPayload) => {
+  dispatch({ ...form, type: LOGIN_SUBMIT })
 }
