@@ -1,4 +1,3 @@
 {
-  "sql-file": true,
-  "configFile": ".config/database.json"
+  "sql-file": true
 }
