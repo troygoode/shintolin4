@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker volume rm shintolin4-postgres-data
+docker volume create --name=shintolin4-postgres-data

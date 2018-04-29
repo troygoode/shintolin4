@@ -15,10 +15,11 @@ services:
       - "3001:3001"
       - "3002:3002"
       - "35729:35729" # hot reload
+    depends_on:
+      - shintolin4-postgres
 
-  # AWS Aurora Postgres is currently compatible to 9.6.3
   shintolin4-postgres:
-    image: postgres:9.6
+    image: "postgres:9.6" # AWS Aurora Postgres is currently compatible to 9.6.3
     volumes:
       - shintolin4-postgres-data:/var/lib/postgresql/data
       - ./postgres:/docker-entrypoint-initdb.d
