@@ -1,19 +1,19 @@
-export default const ivory_spear = {
+const ivorySpear = {
   name: 'ivory spear',
   plural: 'ivory spears',
   tags: ['weapon'],
   weight: 8,
 
   weapon_class: 'stab',
-  break_odds: .0025,
+  break_odds: 0.0025,
 
   accuracy: (attacker, target, tile) => {
-    let chance = .20
+    let chance = 0.20
     if (attacker.skills.includes('spear_2')) {
-      chance += .25
+      chance += 0.25
     }
     if (attacker.skills.includes('spear_4')) {
-      chance += .25
+      chance += 0.25
     }
     return chance
   },
@@ -30,23 +30,27 @@ export default const ivory_spear = {
   },
 
   craft: (character, tile) => {
-    takes: {
-      ap: 15,
-      tools: ['stone'],
-      skill: 'carver',
-      items: {
-        ivory_tusk: 1,
-        staff: 1,
-        pelt_small: 1
-      }
-    },
-    gives: {
-      items: {
-        spear_ivory: 1
+    return {
+      takes: {
+        ap: 15,
+        tools: ['stone'],
+        skill: 'carver',
+        items: {
+          ivory_tusk: 1,
+          staff: 1,
+          pelt_small: 1
+        }
       },
-      xp: {
-        crafter: 15
+      gives: {
+        items: {
+          spear_ivory: 1
+        },
+        xp: {
+          crafter: 15
+        }
       }
     }
   }
 }
+
+export default ivorySpear

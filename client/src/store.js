@@ -10,12 +10,14 @@ import history from './history'
 import DevTools from './containers/DevTools'
 import reducers from './reducers'
 
+const initialState = {}
+
 const store = createStore(
   combineReducers({
     ...reducers,
     router: routerReducer
   }),
-  {}, // initial state
+  initialState,
   compose(
     applyMiddleware(thunk, logger, routerMiddleware(history)),
     DevTools.instrument(),
