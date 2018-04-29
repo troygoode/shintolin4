@@ -18,7 +18,7 @@
     "db-migrate-boilerplate": "^1.0.0",
     "db-migrate-pg": "^0.2.5",
     "express": "^4.16.2",
-    "flow-bin": "^0.59.0",
+    "flow-bin": "^0.71.0",
     "jsonwebtoken": "^8.1.0"
   },
   "scripts": {
