@@ -2,11 +2,9 @@
 
 import path from 'path'
 import express from 'express'
-import dotenv from 'dotenv'
 
 import auth from './auth'
-
-dotenv.config()
+import health from './health'
 
 const DEFAULT_PORT = 3001
 const server = express()
@@ -18,6 +16,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server.use('/auth', auth)
+server.use('/health', health)
 
 // start server
 if (!module.parent) {

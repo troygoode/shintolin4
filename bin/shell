@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# docker exec -it shintolin4_shintolin4_1 /bin/bash
+docker-compose run --service-ports shintolin4 bash

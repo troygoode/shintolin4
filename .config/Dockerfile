@@ -15,7 +15,7 @@ RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 RUN yarn global add pm2 --prefix /usr/local
 RUN yarn install
 
-CMD pm2 start --no-daemon ecosystem.config.js
+CMD pm2-dev .config/pm2.config.js
 
 EXPOSE 3000
 EXPOSE 3001
