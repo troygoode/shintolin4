@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 import './ProgressBar.css'
 
@@ -20,14 +19,6 @@ const clamp = (min: number, max: number, value: number) => {
 }
 
 export default class ProgressBar extends Component<Props> {
-  static propTypes = {
-    min: PropTypes.number,
-    max: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-    textMapper: PropTypes.func,
-    color: PropTypes.string
-  }
-
   render () {
     const { min = 0, max, value, color = 'blue', textMapper } = this.props
     const percentage = clamp(0, 100, Math.floor(((value - min) / (max - min)) * 100))

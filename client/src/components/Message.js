@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import './Message.css'
 
 type MessageSystemProps = {
@@ -10,11 +9,6 @@ type MessageSystemProps = {
 }
 
 export class MessageSystem extends Component<MessageSystemProps> {
-  static propTypes = {
-    text: PropTypes.string.isRequired,
-    timestamp: PropTypes.instanceOf(Date).isRequired
-  }
-
   render () {
     const date = new Date(this.props.timestamp)
     return <div className='message message-system'>
@@ -29,10 +23,6 @@ type MessageListProps = {
 }
 
 export class MessageList extends Component<MessageListProps> {
-  static propTypes = {
-    messages: PropTypes.array.isRequired
-  }
-
   render () {
     const Message = ({message}) => {
       switch (message.type) {

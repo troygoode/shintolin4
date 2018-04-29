@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
 type OnSubmitParams = {
   email: string,
@@ -13,10 +12,6 @@ type Props = {
 }
 
 export default class LoginForm extends Component<Props> {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired
-  }
-
   render () {
     const handleFormSubmit = (e) => {
       e.preventDefault()

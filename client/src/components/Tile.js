@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import './Tile.css'
 import './Tile-Terrain.css'
 
@@ -98,19 +97,6 @@ const PlayerCount = ({ players }) => {
 }
 
 export default class Tile extends Component<Props> {
-  static propTypes = {
-    x: PropTypes.number.isRequired,
-    y: PropTypes.number.isRequired,
-    z: PropTypes.number.isRequired,
-    highlight: PropTypes.bool,
-    terrain: PropTypes.string.isRequired,
-    players: PropTypes.array.isRequired,
-    creatures: PropTypes.array.isRequired,
-    building: PropTypes.string,
-    direction: PropTypes.string,
-    onClick: PropTypes.func
-  }
-
   render () {
     const { direction, building, players, creatures, highlight, terrain, onClick } = this.props
     const showDirection = !!direction

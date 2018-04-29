@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import './Presence.css'
 
 type OnClickParams = {
@@ -17,13 +16,6 @@ type Props = {
 }
 
 export default class Presence extends Component<Props> {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    isFriend: PropTypes.bool
-  }
-
   render () {
     const className = [
       'presence-item',

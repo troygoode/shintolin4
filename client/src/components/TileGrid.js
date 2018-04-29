@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import './TileGrid.css'
 
 import Tile from './Tile'
@@ -23,14 +22,6 @@ type Props = {
 }
 
 export default class TileGrid extends Component<Props> {
-  static propTypes = {
-    centerX: PropTypes.number.isRequired,
-    centerY: PropTypes.number.isRequired,
-    radius: PropTypes.number.isRequired,
-    tiles: PropTypes.array.isRequired,
-    navigateToTile: PropTypes.func
-  }
-
   render () {
     const topY = this.props.centerY - (this.props.radius - 1)
     const leftX = this.props.centerX - (this.props.radius - 1)
