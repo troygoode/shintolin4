@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  shintolin4:
+    build: .
+    image: shintolin4/shintolin4
+    env_file: ./docker.env
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "3002:3002"
+      - "35729:35729" # hot reload
+
+  # AWS Aurora Postgres is currently compatible to 9.6.3
+  shintolin4-postgres:
+    image: postgres:9.6
+    volumes:
+      - shintolin4-postgres-data:/var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d
+    ports:
+      - "3100:5432"
+
+volumes:
+
+  shintolin4-postgres-data:
+    external: true

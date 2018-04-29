@@ -1,0 +1,3 @@
+CREATE USER shintolin4 PASSWORD 'shintolin4';
+CREATE DATABASE shintolin4;
+GRANT ALL PRIVILEGES ON DATABASE shintolin4 TO shintolin4;

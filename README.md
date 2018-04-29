@@ -1,5 +1,12 @@
 # Shintolin
 
+## DOCKER STUFF
+
+```bash
+docker volume create --name=shintolin4-postgres-data
+docker volume rm shintolin4-postgres-data
+```
+
 ## Development Environment
 
 You must have the following installed:
@@ -9,7 +16,7 @@ You must have the following installed:
 
 In your local development environment, create a configuration file in this directory named `.env`:
 
-```
+```bash
 DATABASE_URL=postgres://localhost/shintolin
 JWT_SECRET=secret
 ```
