@@ -1,12 +1,13 @@
 // @flow
 
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import LoginForm from '../components/LoginForm'
-import * as actions from '../actions'
-import type { SubmitFormPayload } from '../actions' // eslint-disable-line
+import { submitLogin } from '../actions/login'
+import type { SubmitFormPayload } from '../actions/login' // eslint-disable-line
 
 type Props = {
   submitLogin: Function
@@ -27,8 +28,8 @@ export class LoginContainer extends Component<Props> {
 }
 
 const mapPropsToState = () => ({})
-const mapDispatchToProps = (dispatch) => ({
-  submitLogin: actions.submitLogin(dispatch)
-})
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  submitLogin
+}, dispatch)
 
 export default connect(mapPropsToState, mapDispatchToProps)(LoginContainer)

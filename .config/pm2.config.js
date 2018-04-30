@@ -9,7 +9,6 @@ module.exports = {
       name: 'storybook',
       script: 'storybook.sh',
       cwd: '/usr/src/app/client',
-      exec_mode: 'fork_mode',
       watch: false
     },
 
@@ -17,14 +16,14 @@ module.exports = {
       name: 'client',
       script: 'client.sh',
       cwd: '/usr/src/app/client',
-      exec_mode: 'fork_mode',
       watch: false
     },
 
     {
       name: 'server',
-      script: 'server.sh',
-      exec_mode: 'fork_mode',
+      script: 'server/index.js',
+      exec_interpreter: './node_modules/.bin/babel-watch',
+      exec_mode: 'fork',
       watch: false
     }
 
