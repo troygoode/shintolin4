@@ -1,11 +1,24 @@
 // @flow
 
+import type { Saga } from 'redux-saga'
 import axios from 'axios'
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { LOGIN_SUBMIT, requestLogin, requestLoginSuccess, requestLoginError } from '../actions/login'
+import {
+  LOGIN_SUBMIT,
+  requestLogin,
+  requestLoginSuccess,
+  requestLoginError
+} from '../actions/login'
 
-export const apiRequest = ({ callFn, requestAction, successAction, errorAction }) => {
-  return function * (input) {
+type ApiRequestOptions = {
+  callFn: Function,
+  requestAction: Function,
+  successAction: Function,
+  errorAction: Function
+}
+
+export const apiRequest = ({ callFn, requestAction, successAction, errorAction }: ApiRequestOptions) => {
+  return function * (input: any): Saga<void> {
     try {
       yield put(requestAction(input))
       const response = yield callFn(input)
@@ -34,9 +47,9 @@ export const apiRequest = ({ callFn, requestAction, successAction, errorAction }
 // }
 // }
 
-export function * watchLogin () {
+export function * watchLogin (): Saga<void> {
   yield takeEvery(LOGIN_SUBMIT, apiRequest({
-    callFn: () => call(axios.post, '/auth'),
+    callFn: (input) => call(axios.post, '/auth'),
     requestAction: requestLogin,
     successAction: requestLoginSuccess,
     errorAction: requestLoginError

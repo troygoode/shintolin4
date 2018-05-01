@@ -1,8 +1,19 @@
 // @flow
 
-import { LOGIN_SUBMIT, LOGIN_REQUEST_SUCCESS, LOGIN_REQUEST_ERROR } from '../actions/login'
+import type { Return } from '../types/return'
+import {
+  LOGIN_SUBMIT,
+  submitLogin,
+  LOGIN_REQUEST_SUCCESS,
+  requestLoginSuccess,
+  LOGIN_REQUEST_ERROR,
+  requestLoginError
+} from '../actions/login'
 
-export default (state = {}, action) => {
+type Actions = Return<typeof submitLogin> | Return<typeof requestLoginSuccess> | Return<typeof requestLoginError>
+type AuthState = {}
+
+export default (state: AuthState = {}, action: Actions) => {
   switch (action.type) {
     case LOGIN_SUBMIT:
       return {
