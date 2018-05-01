@@ -19,7 +19,6 @@ RUN apk --no-cache add ca-certificates wget && \
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
 # install app dependencies
-RUN yarn global add pm2 --prefix /usr/local
 RUN yarn install
 
-CMD pm2-dev .config/pm2.config.js
+CMD yarn start

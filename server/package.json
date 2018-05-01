@@ -1,14 +1,15 @@
 {
-  "name": "shintolin",
+  "name": "shintolin-server",
   "version": "0.0.0",
   "private": true,
-  "main": "server.js",
+  "main": "index.js",
   "license": "MIT",
   "engines": {
     "node": "^8"
   },
   "dependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-node8": "^1.2.0",
@@ -25,22 +26,17 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-standard": "^3.1.0",
     "express": "^4.16.3",
     "flow-bin": "^0.71.0",
     "jsonwebtoken": "^8.2.1"
   },
   "scripts": {
-    "test": "yarn run lint && yarn run flow && yarn run test-server && (cd client && CI=true exec yarn test)",
-    "test-server": "echo TEST",
     "create-migration": "db-migrate create --",
-    "migrate-down": "db-migrate down",
-    "migrate-up": "db-migrate up",
-    "server": "babel-watch server/index.js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "lint": "eslint .",
-    "heroku-postbuild": "(cd client && yarn install && yarn run build-all && yarn run migrate-up)",
-    "heroku-start": "babel-node server/index.js"
+    "start": "babel-watch index.js",
+    "test": "yarn run lint && yarn run flow && yarn run test-server",
+    "test-server": "echo TEST"
   }
 }

@@ -1,20 +1,44 @@
 version: '3'
 services:
 
-  shintolin4:
+  client:
     build:
-      context: .
-      dockerfile: ./.config/Dockerfile
-    image: shintolin4/shintolin4
-    env_file: ./.config/docker.env
+      context: ./client
+      dockerfile: ../.config/Dockerfile-client
+    image: shintolin4/client
+    env_file: ./.config/env.env
     volumes:
-      - .:/usr/src/app
+      - ./client:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - "3000:3000"
-      - "3001:3001"
-      - "3002:3002"
       - "35729:35729" # hot reload
+    depends_on:
+      - server
+
+  storybook:
+    build:
+      context: ./client
+      dockerfile: ../.config/Dockerfile-storybook
+    image: shintolin4/storybook
+    env_file: ./.config/env.env
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3002:3002"
+
+  server:
+    build:
+      context: ./server
+      dockerfile: ../.config/Dockerfile-server
+    image: shintolin4/server
+    env_file: ./.config/env.env
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3001:3001"
     depends_on:
       - shintolin4-postgres
 
@@ -27,7 +51,7 @@ services:
       retries: 3
     volumes:
       - shintolin4-postgres-data:/var/lib/postgresql/data
-      - ./postgres:/docker-entrypoint-initdb.d
+      - ./.config/postgres:/docker-entrypoint-initdb.d
     ports:
       - "3100:5432"
 
