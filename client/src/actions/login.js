@@ -1,5 +1,7 @@
 // @flow
 
+import decode from 'jwt-decode'
+
 import type { Action, ActionT, ApiRequestActions } from '../types/actions'
 
 // ---
@@ -28,13 +30,19 @@ export const requestLoginSent = (input: any): Action<typeof LOGIN_REQUEST_SENT> 
 
 export const LOGIN_REQUEST_SUCCESS = 'LOGIN/REQUEST/SUCCESS'
 
-export type RequestLoginSuccessPayload = {
+export type RequestLoginSuccessInput = {
+  access_token: string
+}
+export type RequestLoginSuccessOutput = {
+  accessToken: string,
   userId: number,
-  displayName: string
+  displayName: string,
+  iat: number
 }
 
-export const requestLoginSuccess = (data: RequestLoginSuccessPayload): ActionT<typeof LOGIN_REQUEST_SUCCESS, RequestLoginSuccessPayload> => {
-  return { ...data, type: LOGIN_REQUEST_SUCCESS }
+export const requestLoginSuccess = (input: RequestLoginSuccessInput): ActionT<typeof LOGIN_REQUEST_SUCCESS, RequestLoginSuccessOutput> => {
+  const tokenData = decode(input.access_token)
+  return { ...tokenData, accessToken: input.access_token, type: LOGIN_REQUEST_SUCCESS }
 }
 
 // ---

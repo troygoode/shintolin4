@@ -17,8 +17,10 @@ type Actions =
 
 type AuthState = {
   isLoading: boolean,
+  accessToken?: string,
   userId?: number,
-  displayName?: string
+  displayName?: string,
+  iat?: number
 }
 
 const initialState: AuthState = {
@@ -36,8 +38,10 @@ export default (state: AuthState = initialState, action: Actions): AuthState => 
       return {
         ...state,
         isLoading: false,
+        accessToken: action.accessToken,
         userId: action.userId,
-        displayName: action.displayName
+        displayName: action.displayName,
+        iat: action.iat
       }
     case LOGIN_REQUEST_ERROR:
       return {
