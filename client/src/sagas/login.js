@@ -1,57 +1,11 @@
 // @flow
 
 import type { Saga } from 'redux-saga'
-import axios from 'axios'
-import { call, put, takeEvery } from 'redux-saga/effects'
-import {
-  LOGIN_SUBMIT,
-  requestLogin,
-  requestLoginSuccess,
-  requestLoginError
-} from '../actions/login'
+import { takeEvery } from 'redux-saga/effects'
 
-type ApiRequestOptions = {
-  callFn: Function,
-  requestAction: Function,
-  successAction: Function,
-  errorAction: Function
-}
-
-export const apiRequest = ({ callFn, requestAction, successAction, errorAction }: ApiRequestOptions) => {
-  return function * (input: any): Saga<void> {
-    try {
-      yield put(requestAction(input))
-      const response = yield callFn(input)
-      if (response.status >= 200 && response.status <= 299) {
-        yield put(successAction(response.data))
-      } else {
-        yield put(errorAction(response))
-      }
-    } catch (err) {
-      yield put(errorAction(err))
-    }
-  }
-}
-
-// export function * loginSaga (loginForm) {
-// try {
-// yield put(requestLogin(loginForm))
-// const response = yield call(axios.post, '/auth')
-// if (response.status >= 200 && response.status <= 299) {
-// yield put(requestLoginSuccess(response.data))
-// } else {
-// yield put(requestLoginError(response))
-// }
-// } catch (err) {
-// yield put(requestLoginError(err))
-// }
-// }
+import { apiRequest } from './api'
+import { LOGIN_SUBMIT, loginApiRequest } from '../actions/login'
 
 export function * watchLogin (): Saga<void> {
-  yield takeEvery(LOGIN_SUBMIT, apiRequest({
-    callFn: (input) => call(axios.post, '/auth'),
-    requestAction: requestLogin,
-    successAction: requestLoginSuccess,
-    errorAction: requestLoginError
-  }))
+  yield takeEvery(LOGIN_SUBMIT, apiRequest(loginApiRequest))
 }

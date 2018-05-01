@@ -1,6 +1,6 @@
 // @flow
 
-import type { Action, ActionT } from '../types/actions'
+import type { Action, ActionT, ApiRequestActions } from '../types/actions'
 
 // ---
 
@@ -18,10 +18,10 @@ export const submitLogin = (form: SubmitFormPayload): ActionT<typeof LOGIN_SUBMI
 
 // ---
 
-export const LOGIN_REQUEST = 'LOGIN/REQUEST'
+export const LOGIN_REQUEST_SENT = 'LOGIN/REQUEST/SENT'
 
-export const requestLogin = (input: any): Action<typeof LOGIN_REQUEST> => {
-  return { type: LOGIN_REQUEST }
+export const requestLoginSent = (input: any): Action<typeof LOGIN_REQUEST_SENT> => {
+  return { type: LOGIN_REQUEST_SENT }
 }
 
 // ---
@@ -29,7 +29,7 @@ export const requestLogin = (input: any): Action<typeof LOGIN_REQUEST> => {
 export const LOGIN_REQUEST_SUCCESS = 'LOGIN/REQUEST/SUCCESS'
 
 export type RequestLoginSuccessPayload = {
-  userId: string,
+  userId: number,
   displayName: string
 }
 
@@ -43,4 +43,19 @@ export const LOGIN_REQUEST_ERROR = 'LOGIN/REQUEST/ERROR'
 
 export const requestLoginError = (loginError: any): Action<typeof LOGIN_REQUEST_ERROR> => {
   return { type: LOGIN_REQUEST_ERROR }
+}
+
+// ---
+
+export const loginApiRequest: ApiRequestActions = {
+  requestParameters: {
+    method: 'POST',
+    url: '/auth'
+  },
+  requestSent: LOGIN_REQUEST_SENT,
+  requestSentAction: requestLoginSent,
+  requestSucceeded: LOGIN_REQUEST_SUCCESS,
+  requestSucceededAction: requestLoginSuccess,
+  requestErrored: LOGIN_REQUEST_ERROR,
+  requestErroredAction: requestLoginError
 }

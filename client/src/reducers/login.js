@@ -10,27 +10,39 @@ import {
   requestLoginError
 } from '../actions/login'
 
-type Actions = Return<typeof submitLogin> | Return<typeof requestLoginSuccess> | Return<typeof requestLoginError>
-type AuthState = {}
+type Actions =
+  | Return<typeof submitLogin>
+  | Return<typeof requestLoginSuccess>
+  | Return<typeof requestLoginError>
 
-export default (state: AuthState = {}, action: Actions) => {
+type AuthState = {
+  isLoading: boolean,
+  userId?: number,
+  displayName?: string
+}
+
+const initialState: AuthState = {
+  isLoading: false
+}
+
+export default (state: AuthState = initialState, action: Actions): AuthState => {
   switch (action.type) {
     case LOGIN_SUBMIT:
       return {
         ...state,
-        loading: true
+        isLoading: true
       }
     case LOGIN_REQUEST_SUCCESS:
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         userId: action.userId,
         displayName: action.displayName
       }
     case LOGIN_REQUEST_ERROR:
       return {
         ...state,
-        loading: false
+        isLoading: false
       }
     default:
       return state
