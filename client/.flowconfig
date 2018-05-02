@@ -1,5 +1,4 @@
 [ignore]
-.*/node_modules/db-migrate/.*
 .*/node_modules/fbjs/.*
 .*/client/build/.*
 .*/client/node_modules/radium/.*
