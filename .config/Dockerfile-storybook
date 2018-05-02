@@ -15,4 +15,4 @@ RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 # install app dependencies
 RUN yarn install
 
-CMD yarn run storybook
+CMD yarn install && yarn run storybook
