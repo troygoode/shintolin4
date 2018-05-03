@@ -12,7 +12,7 @@ Install Docker (stable channel):
 
 There is some weird Docker DNS stuff that made things slow. This magic spell fixes it if placed in your `/etc/hosts` file:
 
-```
+```txt
 # DOCKER MAGIC, see: https://github.com/docker/compose/issues/3419#issuecomment-221793401
 127.0.0.1       localunixsocket.local
 127.0.0.1       localunixsocket.localdomain
@@ -24,15 +24,15 @@ There is some weird Docker DNS stuff that made things slow. This magic spell fix
 From your host machine:
 
 ```bash
-$ bin/reset-database # create a Docker volume for database storage; ignore the error
-$ bin/shell # start the containers and drop you into a bash shell
+bin/reset-database # create a Docker volume for database storage; ignore the error
+bin/shell # start the containers and drop you into a bash shell
 ```
 
 From within the shell opened above:
 
 ```bash
-$ yarn run db-migrate up # execute database migrations
-$ bin/start # use PM2 to start up the various apps
+yarn run db-migrate up # execute database migrations
+bin/start # use PM2 to start up the various apps
 ```
 
 Now try accessing the below in your host's web browser:
@@ -45,11 +45,9 @@ Also take a look at the various PM2 commands (in particular, `pm2 logs <app_name
 
 [http://pm2.keymetrics.io/docs/usage/quick-start/#cheat-sheet](http://pm2.keymetrics.io/docs/usage/quick-start/#cheat-sheet)
 
-
 ## License
 
 [MIT License](/LICENSE)
-
 
 ## Author
 
